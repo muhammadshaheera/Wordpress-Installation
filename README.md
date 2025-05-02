@@ -36,7 +36,7 @@ try {
 ```
   c.	Verify DB connection by restarting httpd service and access `localhost/test.php`. This page will display content of “test_table” from “wordpress” database.
 
-4. Install Wordpress:
+5. Install Wordpress:
   a. `wget http://wordpress.org/latest.tar.gz`
   b. `tar xvzf latest.tar.gz`
   c. `rsync -avP ~/wordpress/ /var/www/html/`
