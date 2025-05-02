@@ -12,20 +12,21 @@
 4. Verify DB connection via PHP by:
    a. `vi /var/www/html/test.php`
    b. Add below text:
-   `<?php
-$user = "wordpressuser";
-$password = "abc";
-$database = "wordpress";
-$table = "test_table";
-
-try {
-  $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
-  echo "<h2>TODO</h2><ol>"; 
-  foreach($db->query("SELECT content FROM $table") as $row) {
-    echo "<li>" . $row['content'] . "</li>";
-  }
-  echo "</ol>";
-} catch (PDOException $e) {
-    print "Error!: " . $e->getMessage() . "<br/>";
-    die();
-}`
+   ```<?php
+      $user = "wordpressuser";
+      $password = "abc";
+      $database = "wordpress";
+      $table = "test_table";
+      
+      try {
+        $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+        echo "<h2>TODO</h2><ol>"; 
+        foreach($db->query("SELECT content FROM $table") as $row) {
+          echo "<li>" . $row['content'] . "</li>";
+        }
+        echo "</ol>";
+      } catch (PDOException $e) {
+          print "Error!: " . $e->getMessage() . "<br/>";
+          die();
+   }```
+  c.	Verify DB connection by restarting httpd service and access `localhost/test.php`. This page will display content of “test_table” from “wordpress” database.
