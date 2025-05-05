@@ -48,3 +48,15 @@ try {
   i. `systemctl restart httpd.service`
   j. Access your VM IP from browser by `localhost:80` and continue with installation.
   k. Use this command if key generation is required `curl -s https://api.wordpress.org/secret-key/1.1/salt/`
+
+6. In case of remote database:
+   a. `vim /etc/selinux/config`
+   b. Change `SELINUX=disabled` and run `setenforce 0` and verify using `sestatus`.
+   c. Run `systemctl stop firewalld` and `systemctl disable firewalld`.
+   d. Edit privileges from database host server by:
+     i.	`CREATE USER wordpressuser@'host_db_ip' IDENTIFIED BY 'abc';`
+    ii.	`GRANT ALL PRIVILEGES ON wordpress.* TO wordpressuser@'host_db_ip' IDENTIFIED BY 'abc';`
+   iii.	`FLUSH PRIVILEGES;`
+   iv. Install MariaDB Client on Wordpress server and verify DB connectivity.
+  e. Edit `/var/www/html/wp-config.php` and add DB, User and IP created in DB host
+  f. Run `systemctl restart httpd`
